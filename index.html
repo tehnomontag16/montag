@@ -113,18 +113,6 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 8px)}
   .logo-txt span{display:block;max-width:26ch}
 }
 
-/* Панель услуг */
-.srvbar{background:var(--navy);color:var(--navy-ink)}
-.srvbar .wrap{display:flex;gap:10px;align-items:center;padding-block:10px;overflow-x:auto;scrollbar-width:none}
-.srvbar .wrap::-webkit-scrollbar{display:none}
-.srvbar a{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border-radius:var(--r-sm);color:#FFFFFF;text-decoration:none;font-weight:500;font-size:.95rem;white-space:nowrap;min-height:44px}
-.srvbar a:hover{background:var(--navy-2)}
-.srvbar a svg.i{width:20px;height:20px;color:var(--green-bright)}
-.srvbar a.photo{background:var(--green);font-family:var(--font-display);font-weight:700;margin-left:auto}
-.srvbar a.photo:hover{background:var(--green-hover)}
-.srvbar a.photo svg.i{color:#FFFFFF}
-@media (max-width:1023px){.srvbar a.photo{margin-left:0}}
-
 /* Первый экран */
 .hero{background:var(--navy);color:var(--navy-ink);padding-block:clamp(28px,4vw,56px)}
 .hero h1{color:#FFFFFF}
@@ -343,11 +331,17 @@ body{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
 dialog.viewer{border:0;padding:0;background:transparent;max-width:min(1000px,94vw);width:100%}
 dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
 .viewer-in{display:grid;gap:12px}
-.viewer-img{aspect-ratio:3/4;max-height:78vh;width:100%;max-width:100%;border-radius:var(--r-md);background:var(--navy);display:grid;place-items:center;color:var(--navy-muted);overflow:hidden;position:relative}
+.viewer-img{cursor:pointer;aspect-ratio:3/4;max-height:78vh;width:100%;max-width:100%;border-radius:var(--r-md);background:var(--navy);display:grid;place-items:center;color:var(--navy-muted);overflow:hidden;position:relative}
 .viewer-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
 .viewer-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#FFFFFF;flex-wrap:wrap;font-size:.92rem}
 .viewer-bar .btn-ghost{color:#FFFFFF;border-color:rgba(255,255,255,.4)}
 .viewer-bar .btn-ghost:hover{color:#FFFFFF;border-color:#FFFFFF}
+.vnav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:50px;height:50px;border:0;border-radius:50%;background:rgba(20,26,38,.6);color:#FFFFFF;display:grid;place-items:center;cursor:pointer;transition:background-color .15s ease}
+.vnav:hover{background:rgba(20,26,38,.88)}
+.vnav svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.vnav-prev{left:10px}
+.vnav-next{right:10px}
+@media (max-width:480px){.vnav{width:44px;height:44px}.vnav svg{width:22px;height:22px}}
 </style>
 </head>
 <body>
@@ -382,10 +376,10 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
 <header class="header">
   <div class="topnav">
     <div class="wrap">
+      <a href="#raboty">Галерея работ</a>
       <a href="#akcii">Акции</a>
       <a href="#uslugi">Услуги</a>
       <a href="#raschet">Калькулятор</a>
-      <a href="#raboty">Галерея работ</a>
       <a href="#o-kompanii">О компании</a>
       <a href="#kontakty">Контакты</a>
     </div>
@@ -410,14 +404,6 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
     </div>
   </div>
 </header>
-
-<nav class="srvbar" aria-label="Основные услуги">
-  <div class="wrap">
-    <a href="#uslugi"><svg class="i" aria-hidden="true"><use href="#i-window"/></svg>Остекление балконов и лоджий</a>
-    <a href="#uslugi"><svg class="i" aria-hidden="true"><use href="#i-roller"/></svg>Отделка балконов</a>
-    <a href="#uslugi"><svg class="i" aria-hidden="true"><use href="#i-thermo"/></svg>Утепление балконов</a>
-  </div>
-</nav>
 
 <main id="top">
   <section class="hero">
@@ -455,6 +441,24 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
       <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-window"/></svg><span><b>250+</b><span>балконов сделано</span></span></div>
       <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg><span><b>2 года</b><span>гарантия на работы</span></span></div>
       <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-ruler"/></svg><span><b>0 ₽</b><span>замер и смета</span></span></div>
+    </div>
+  </section>
+
+  <section class="section" id="raboty">
+    <div class="wrap">
+      <div class="works-head">
+        <div class="sec-head">
+          <h2>Галерея работ</h2>
+          <p class="lead">Объекты в Набережных Челнах, Нижнекамске и Елабуге.</p>
+        </div>
+        <div class="tabs" role="group" aria-label="Категория работ">
+          <button class="tab" type="button" data-cat="all" aria-pressed="true">Все</button>
+          <button class="tab" type="button" data-cat="balkony" aria-pressed="false">Балконы</button>
+          <button class="tab" type="button" data-cat="kryshi" aria-pressed="false">Крыши</button>
+          <button class="tab" type="button" data-cat="naruzhnye" aria-pressed="false">Наружные</button>
+        </div>
+      </div>
+      <div class="gallery" id="gallery"></div>
     </div>
   </section>
 
@@ -642,24 +646,6 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
     </div>
   </section>
 
-  <section class="section" id="raboty">
-    <div class="wrap">
-      <div class="works-head">
-        <div class="sec-head">
-          <h2>Галерея работ</h2>
-          <p class="lead">Объекты в Набережных Челнах, Нижнекамске и Елабуге.</p>
-        </div>
-        <div class="tabs" role="group" aria-label="Категория работ">
-          <button class="tab" type="button" data-cat="all" aria-pressed="true">Все</button>
-          <button class="tab" type="button" data-cat="balkony" aria-pressed="false">Балконы</button>
-          <button class="tab" type="button" data-cat="kryshi" aria-pressed="false">Крыши</button>
-          <button class="tab" type="button" data-cat="naruzhnye" aria-pressed="false">Наружные</button>
-        </div>
-      </div>
-      <div class="gallery" id="gallery"></div>
-    </div>
-  </section>
-
   <section class="section" id="garantii">
     <div class="wrap">
       <div class="sec-head">
@@ -819,10 +805,10 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
     </button>
   </div>
   <nav aria-label="Разделы сайта">
+    <a href="#raboty">Галерея работ</a>
     <a href="#akcii">Акции</a>
     <a href="#uslugi">Услуги</a>
     <a href="#raschet">Калькулятор</a>
-    <a href="#raboty">Галерея работ</a>
     <a href="#garantii">Гарантии</a>
     <a href="#o-kompanii">О компании</a>
     <a href="#voprosy">Вопросы</a>
@@ -843,14 +829,14 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
 
 <dialog class="viewer" id="viewer" aria-label="Просмотр фото">
   <div class="viewer-in">
-    <div class="viewer-img" id="viewer-img"><svg class="i" style="width:48px;height:48px" aria-hidden="true"><use href="#i-image"/></svg></div>
+    <div class="viewer-img" id="viewer-img" role="button" tabindex="0" aria-label="Следующее фото">
+      <svg class="i" style="width:48px;height:48px" aria-hidden="true"><use href="#i-image"/></svg>
+      <button class="vnav vnav-prev" type="button" id="v-prev" aria-label="Предыдущее фото"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <button class="vnav vnav-next" type="button" id="v-next" aria-label="Следующее фото"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
     <div class="viewer-bar">
       <span id="viewer-cap"></span>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-ghost" type="button" id="v-prev">Назад</button>
-        <button class="btn btn-ghost" type="button" id="v-next">Дальше</button>
-        <button class="btn btn-ghost" type="button" id="v-close">Закрыть</button>
-      </div>
+      <button class="btn btn-ghost" type="button" id="v-close">Закрыть</button>
     </div>
   </div>
 </dialog>
@@ -1070,8 +1056,11 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
     vCap.textContent = p.caption + " · " + (vi + 1) + " из " + visible.length;
   }
   function openViewer(i){ vi = i; paint(); if (viewer.showModal) viewer.showModal(); else viewer.setAttribute("open",""); }
-  document.getElementById("v-prev").addEventListener("click", function(){ vi = (vi - 1 + visible.length) % visible.length; paint(); });
-  document.getElementById("v-next").addEventListener("click", function(){ vi = (vi + 1) % visible.length; paint(); });
+  function step(d){ vi = (vi + d + visible.length) % visible.length; paint(); }
+  document.getElementById("v-prev").addEventListener("click", function(e){ e.stopPropagation(); step(-1); });
+  document.getElementById("v-next").addEventListener("click", function(e){ e.stopPropagation(); step(1); });
+  vImg.addEventListener("click", function(){ step(1); });
+  vImg.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); step(1); } });
   document.getElementById("v-close").addEventListener("click", function(){ viewer.close ? viewer.close() : viewer.removeAttribute("open"); });
   viewer.addEventListener("click", function(e){ if (e.target === viewer) viewer.close(); });
   viewer.addEventListener("keydown", function(e){
