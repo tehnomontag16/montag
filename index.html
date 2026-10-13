@@ -159,7 +159,6 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 8px)}
 .tr svg.i{width:26px;height:26px;color:var(--green);flex:none}
 .tr b{font-family:var(--font-display);font-size:1.02rem;display:block;line-height:1.2}
 .tr span{font-size:.84rem;color:var(--muted)}
-.stars{color:var(--star);letter-spacing:1px;font-size:.9rem}
 @media (min-width:860px){.trust .wrap{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* Акции */
@@ -271,17 +270,6 @@ legend{font-family:var(--font-display);font-size:clamp(1.15rem,1rem + .6vw,1.45r
 .shot button:hover img{transform:scale(1.04)}
 .shot.noimg img{display:none}
 .shot figcaption{font-size:.88rem;color:var(--muted)}
-
-/* Отзывы */
-.reviews{display:grid;gap:14px}
-@media (min-width:900px){.reviews{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.review{background:var(--card);border-radius:var(--r-lg);padding:clamp(18px,2.4vw,26px);display:grid;gap:14px;border:2px dashed var(--todo);min-width:0}
-.review .tag2{justify-self:start;padding:4px 11px;border-radius:999px;background:var(--todo-soft);color:var(--todo);font-size:.78rem;font-weight:600}
-.review blockquote{margin:0;font-size:1.02rem}
-.review footer{display:flex;align-items:center;gap:11px;color:var(--muted);font-size:.92rem}
-.review .ava{width:42px;height:42px;border-radius:50%;background:var(--bg);flex:none}
-.rating-box{margin-top:16px;background:var(--card);border-radius:var(--r-lg);padding:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.rating-box b{font-family:var(--font-display);font-size:1.5rem}
 
 /* Гарантии */
 .guar{display:grid;gap:14px}
@@ -398,7 +386,6 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
       <a href="#uslugi">Услуги</a>
       <a href="#raschet">Калькулятор</a>
       <a href="#raboty">Галерея работ</a>
-      <a href="#otzyvy">Отзывы</a>
       <a href="#o-kompanii">О компании</a>
       <a href="#kontakty">Контакты</a>
     </div>
@@ -468,8 +455,7 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
       <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-award"/></svg><span><b>8+ лет</b><span>опыт работы</span></span></div>
       <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-window"/></svg><span><b>250+</b><span>балконов сделано</span></span></div>
       <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg><span><b>2 года</b><span>гарантия на работы</span></span></div>
-      <!-- ЗАПОЛНИТЬ: рейтинг и число отзывов из вашей карточки Яндекс Карт или 2ГИС -->
-      <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg><span><b><span class="todo">0.0</span> <span class="stars" aria-hidden="true">★★★★★</span></b><span><span class="todo">0</span> отзывов на Яндекс Картах</span></span></div>
+      <div class="tr"><svg class="i" aria-hidden="true"><use href="#i-ruler"/></svg><span><b>0 ₽</b><span>замер и смета</span></span></div>
     </div>
   </section>
 
@@ -676,39 +662,6 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
     </div>
   </section>
 
-  <section class="section" id="otzyvy">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Отзывы</h2>
-      </div>
-      <!-- ЗАПОЛНИТЬ: замените шаблоны настоящими отзывами (текст, имя, район, вид работ) и уберите метку «Шаблон» -->
-      <div class="reviews">
-        <article class="review">
-          <span class="tag2">Шаблон: вставьте отзыв</span>
-          <blockquote>[Текст отзыва клиента: что делали, как прошёл монтаж, понравился ли результат]</blockquote>
-          <footer><span class="ava" aria-hidden="true"></span><span>[Имя], [район или город]<br>[Вид работ]</span></footer>
-        </article>
-        <article class="review">
-          <span class="tag2">Шаблон: вставьте отзыв</span>
-          <blockquote>[Текст отзыва клиента]</blockquote>
-          <footer><span class="ava" aria-hidden="true"></span><span>[Имя], [район или город]<br>[Вид работ]</span></footer>
-        </article>
-        <article class="review">
-          <span class="tag2">Шаблон: вставьте отзыв</span>
-          <blockquote>[Текст отзыва клиента]</blockquote>
-          <footer><span class="ava" aria-hidden="true"></span><span>[Имя], [район или город]<br>[Вид работ]</span></footer>
-        </article>
-      </div>
-      <div class="rating-box">
-        <b><span class="todo">0.0</span></b>
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <span><span class="todo">0</span> отзывов на Яндекс Картах</span>
-        <a class="btn btn-line todo-link" href="#" style="margin-left:auto">Смотреть все отзывы</a>
-      </div>
-      <p class="send-note" style="margin-top:10px">Вместо «0.0» и ссылки подставьте рейтинг и адрес вашей карточки в Яндекс Картах или 2ГИС.</p>
-    </div>
-  </section>
-
   <section class="section" id="garantii">
     <div class="wrap">
       <div class="sec-head">
@@ -853,8 +806,7 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
       </div>
       <div>
         <h3>Компания</h3>
-        <!-- ЗАПОЛНИТЬ реквизиты -->
-        <p><span class="todo">ИП / ООО «…», ИНН …</span><br><a href="privacy.html">Политика обработки персональных данных</a></p>
+        <p><a href="privacy.html">Политика обработки персональных данных</a></p>
       </div>
     </div>
     <div class="footer-bottom">© <span id="year">2026</span> ТехноМонтаж</div>
@@ -873,7 +825,6 @@ dialog.viewer::backdrop{background:rgba(20,26,38,.9)}
     <a href="#uslugi">Услуги</a>
     <a href="#raschet">Калькулятор</a>
     <a href="#raboty">Галерея работ</a>
-    <a href="#otzyvy">Отзывы</a>
     <a href="#garantii">Гарантии</a>
     <a href="#o-kompanii">О компании</a>
     <a href="#voprosy">Вопросы</a>
